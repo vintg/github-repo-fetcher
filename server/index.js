@@ -1,13 +1,35 @@
 const express = require('express');
 let app = express();
+const bodyParser = require('body-parser');
+const git = require('../helpers/github.js');
+const save = require('../database/index');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
+// var Promise = require('bluebird');
+
 app.post('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
+    console.log('post request was made');
+    git.getReposByUsername(req.body.username);
+    res.end();
+    // return new Promise((resolve,reject)=>{
+    //   git.getReposByUsername(req.body.username, (err, data)=>{
+    //     if(err) {
+    //       reject(err);
+    //     } else {
+    //       console.log(data);
+    //       resolve(data)
+    //     }
+    //   });
+    // })
+    // .then(result => {
+    //   console.log('resolve from promise', result)
+    //     res.json(result);
+    //     save(result);
+    // }).catch(err=> console.log('ERR:',err))
+
 });
 
 app.get('/repos', function (req, res) {
