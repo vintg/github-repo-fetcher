@@ -12,9 +12,21 @@ class App extends React.Component {
     }
   }
 
+  retrieve(){
+    $.get('/repos', success => {
+      console.log(success);
+      this.state.repos = success;
+    });
+  }
+
+  componentDidMount(){
+
+  }
+
   search (term) {
     console.log(`username ${term} was searched`);
     $.post('/repos', {username: term});
+    this.retrieve();
   }
 
   render () {

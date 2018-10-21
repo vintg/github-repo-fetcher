@@ -43,7 +43,7 @@ let getReposByUsername = (username) => {
         res.push(entry);
       }
 
-      console.log('saving', res);
+      console.log('saving');
       db.save(res);
   });
 

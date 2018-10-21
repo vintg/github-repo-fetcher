@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher',  { useMongoClient: true });
+mongoose.Promise = global.Promise;
 
 let repoSchema = mongoose.Schema({
   id: { type: Number, required: true, unique: true},
@@ -23,8 +24,9 @@ let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (data) => {
   Repo.insertMany(data, (err, docs) => {
-    if(err) return console.error(err)
+    if(err) return console.log(err);
   });
 };
 
 module.exports.save = save;
+module.exports.Repo = Repo;
