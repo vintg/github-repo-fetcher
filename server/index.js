@@ -17,14 +17,13 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   console.log('get request was made');
   var repos = db.Repo;
-  var query = Repo.find({});
-
+  var query = repos.find({});
   query.limit(25);
   query.sort({ followers: -1 });
   query.exec((err, data)=> {
-    if (err) return handleError(err);
+    if (err) return console.log(err);
+    res.json(data);
   })
-  .then(results => res.send(results));
 });
 
 let port = 1128;

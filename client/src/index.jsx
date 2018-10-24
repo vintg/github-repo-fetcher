@@ -15,7 +15,7 @@ class App extends React.Component {
   retrieve(){
     $.get('/repos', success => {
       console.log(success);
-      this.state.repos = success;
+      this.setState({repos: success});
     });
   }
 

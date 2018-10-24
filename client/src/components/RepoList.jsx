@@ -1,8 +1,8 @@
 import React from 'react';
-import RepoListEntry from './RepoListEntry';
+import RepoListEntry from './RepoListEntry.jsx';
 
 const RepoList = (props) => (
-  <div className="repo-list" style ={{margin:'2em', width:'100%'}}>
+  <div className="repo-list" style={{margin:'2em', width:'100%'}}>
    <table>
       <thead>
         <tr>
@@ -17,7 +17,9 @@ const RepoList = (props) => (
           <th>Description</th>
         </tr>
       </thead>
+    <tbody>
     {props.repos.map(repo => <RepoListEntry key= {repo.id} repo={repo}/>)}
+    </tbody>
    </table>
   </div>
 )
